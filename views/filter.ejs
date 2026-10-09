@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Termékek
+    </title>
+</head>
+<body>
+    <h3><a href="/">Kezdőoldal</a></h3>
+    <h1>Termékek</h1>
+    <table>
+        <thead>
+            <th>Termék neve</th>
+            <th>Kategória</th>
+            <th>Ár</th>
+            <th>Raktárkészlet</th>
+        </thead>
+        <tbody>
+            <% adatok.forEach(element => { %>
+                <% if (element.stock == 0) { %>
+                    <tr style="background-color: red; font-weight: bold;">
+                        <td><%= element.name %></td>
+                        <td><%= element.category %></td>
+                        <td><%= element.price %></td>
+                        <td><%= element.stock %></td>
+                    </tr>
+                <% } else { %>
+                    <tr>
+                        <td><%= element.name %></td>
+                        <td><%= element.category %></td>
+                        <td><%= element.price %></td>
+                        <td style="<%= element.stock < 5 ? "background-color: red; font-weight:bold":""%>"><%= element.stock %></td>
+                    </tr>
+                <% } %>
+            <% }) %>
+        </tbody>
+    </table>
+    <br>
+    <h1>Szűrés</h1>
+    <form>
+        <Label for="category">Kategória:</Label>
+        <select name="category">
+            <option value="elektronika">Elektronika</option>
+            <option value="könyv">Könyv</option>
+            <option value="ruházat">Ruházat</option>
+            <option value="játék">Játék</option>
+        </select>
+        <br>
+        <button type="submit">Szűrés</button>
+    </form>
+</body>
+</html>
